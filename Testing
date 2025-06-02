@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Login Page</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+  }
+
+  .login-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    padding: 40px 30px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .login-container h2 {
+    margin-bottom: 30px;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  label {
+    margin-bottom: 5px;
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    transition: background-color 0.3s ease;
+  }
+
+  input[type="text"]:focus,
+  input[type="password"]:focus {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  button {
+    padding: 14px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #6c63ff;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #574b90;
+  }
+
+  .error-message {
+    background-color: #ff4d4f;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    display: none;
+    text-align: center;
+  }
+  
+  @media (max-width: 480px) {
+    .login-container {
+      padding: 30px 20px;
+      margin: 0 10px;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Login</h2>
+    <div id="error" class="error-message"></div>
+    <form id="loginForm" novalidate>
+      <label for="username">Username or Email</label>
+      <input type="text" id="username" name="username" placeholder="Enter your username or email" required />
+      
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password" required />
+      
+      <button type="submit">Log In</button>
+    </form>
+  </div>
+
+<script>
+  const form = document.getElementById('loginForm');
+  const errorDiv = document.getElementById('error');
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    errorDiv.style.display = 'none';
+    const username = form.username.value.trim();
+    const password = form.password.value.trim();
+
+    if (!username) {
+      showError('Please enter your username or email.');
+      return;
+    }
+    if (!password) {
+      showError('Please enter your password.');
+      return;
+    }
+
+    // Simple dummy check example (to be replaced with real auth)
+    if (username.toLowerCase() === "user" && password === "password123") {
+      alert('Login successful! Welcome, ' + username + '.');
+      form.reset();
+    } else {
+      showError('Invalid username or password. Please try again.');
+    }
+  });
+
+  function showError(message) {
+    errorDiv.textContent = message;
+    errorDiv.style.display = 'block';
+  }
+</script>
+</body>
+</html>
+
