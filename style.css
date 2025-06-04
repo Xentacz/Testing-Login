@@ -29,4 +29,25 @@ form button {
 
 form button:hover {
   background-color: #0056b3;
+}.signup-link {
+  margin-top: 15px;
+  cursor: pointer;
+  color: #0af;
+  font-weight: bold;
+  text-align: center;
 }
+
+.signup-link span {
+  text-decoration: underline;
+  animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #00bfff, 0 0 10px #00bfff;
+  }
+  to {
+    text-shadow: 0 0 20px #00f, 0 0 30px #00f;
+  }
+}
+
