@@ -44,7 +44,30 @@ body {
   background-color: #0056b3;
 }
 
-#message {
+#message, #signupMessage {
   margin-top: 15px;
   font-weight: bold;
+}
+
+.signup-link {
+  margin-top: 15px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.signup-link a {
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
+  animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #007bff, 0 0 10px #007bff, 0 0 15px #007bff;
+  }
+  to {
+    text-shadow: 0 0 10px #3399ff, 0 0 20px #3399ff, 0 0 25px #3399ff;
+  }
 }
