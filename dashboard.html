@@ -5,12 +5,101 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Dashboard</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .dashboard {
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    #notes {
+      width: 100%;
+      height: 100px;
+      margin: 15px 0;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
 </head>
-<body onload="checkLoggedIn()">
-  <div class="login-container">
+<body onload="loadDashboard()">
+  <div class="dashboard">
     <h2 id="welcome-message">Welcome!</h2>
+    <p id="datetime"></p>
+
+    <h3>Your Notes:</h3>
+    <textarea id="notes" placeholder="Write your notes here..."></textarea>
+    <br />
+    <button onclick="saveNotes()">Save Notes</button>
+
+    <h3 style="margin-top: 30px;">Current Weather in Irving, TX:</h3>
+    <a class="weatherwidget-io"
+       href="https://forecast7.com/en/32d81n96d95/irving/"
+       data-label_1="IRVING"
+       data-label_2="WEATHER"
+       data-theme="original">
+       IRVING WEATHER
+    </a>
+
+    <script>
+      !function(d,s,id){
+        var js,fjs=d.getElementsByTagName(s)[0];
+        if(!d.getElementById(id)){
+          js=d.createElement(s);
+          js.id=id;
+          js.src='https://weatherwidget.io/js/widget.min.js';
+          fjs.parentNode.insertBefore(js,fjs);
+        }
+      }(document,'script','weatherwidget-io-js');
+    </script>
+
+    <br /><br />
     <button onclick="logoutUser()">Logout</button>
   </div>
-  <script src="script.js"></script>
+
+  <script>
+    function loadDashboard() {
+      const user = localStorage.getItem('loggedInUser') || "User";
+      document.getElementById("welcome-message").innerText = `Welcome, ${user}!`;
+      document.getElementById("datetime").innerText = new Date().toLocaleString();
+
+      const savedNotes = localStorage.getItem(`notes_${user}`);
+      if (savedNotes) {
+        document.getElementById("notes").value = savedNotes;
+      }
+    }
+
+    function saveNotes() {
+      const user = localStorage.getItem('loggedInUser');
+      const notes = document.getElementById("notes").value;
+      if (user) {
+        localStorage.setItem(`notes_${user}`, notes);
+        alert("Notes saved!");
+      }
+    }
+
+    function logoutUser() {
+      localStorage.removeItem("loggedInUser");
+      window.location.href = "index.html";
+    }
+  </script>
 </body>
 </html>
