@@ -1,22 +1,33 @@
-/* Make sure forms and inputs have consistent width and spacing */
-form {
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
-form input {
-  width: 90%;
+.login-container {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 300px;
+  text-align: center;
+}
+
+.login-container input {
+  width: 100%;
   padding: 10px;
   margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 5px;
-  box-sizing: border-box; /* important for padding + width */
-  font-size: 1rem;
+  box-sizing: border-box;
 }
 
-form button {
-  width: 90%;
+.login-container button {
+  width: 100%;
   padding: 10px;
   background-color: #007bff;
   border: none;
@@ -24,30 +35,29 @@ form button {
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
-  margin-top: 10px;
 }
 
-form button:hover {
+.login-container button:hover {
   background-color: #0056b3;
-}.signup-link {
-  margin-top: 15px;
-  cursor: pointer;
-  color: #0af;
-  font-weight: bold;
-  text-align: center;
 }
 
-.signup-link span {
-  text-decoration: underline;
-  animation: glow 1.5s ease-in-out infinite alternate;
+#message, #signup-message {
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.glow-text {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #00f;
+  animation: glow 1.5s infinite alternate;
 }
 
 @keyframes glow {
   from {
-    text-shadow: 0 0 5px #00bfff, 0 0 10px #00bfff;
+    text-shadow: 0 0 5px blue;
   }
   to {
-    text-shadow: 0 0 20px #00f, 0 0 30px #00f;
+    text-shadow: 0 0 20px cyan;
   }
 }
-
